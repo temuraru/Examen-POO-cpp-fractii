@@ -47,31 +47,6 @@ public:
         this->numitor = f.numitor;
     };
 
-    // move constructor
-    Fractie(Fractie&& other) noexcept {
-        // pilfer other’s resource
-        numarator = other.numarator;
-        numitor = other.numitor;
-        // reset other
-        other.numarator = T(0);
-        other.numitor = T(1);
-    }
-    // move assignment operator
-    Fractie& operator = (Fractie&& other) noexcept {
-        if (this!=&other)
-        {
-            // release the current object’s resources
-            numarator = T(0);
-            numitor = T(1);
-            // pilfer other’s resource
-            numarator = other.numarator;
-            numitor = other.numitor;
-            // reset other
-            other.numarator = 0;
-            other.numitor = 0;
-        }
-        return *this;
-    }
     // supraincarcare operator ==
     bool operator == (const Fractie& f) {
         return this->numarator * f.numitor == this->numitor * f.numarator;
@@ -142,31 +117,6 @@ public:
         this->real = c.real;
         this->imag = c.imag;
     };
-    // move constructor
-    Complex(Complex&& other) noexcept {
-        // pilfer other’s resource
-        real = other.real;
-        imag = other.imag;
-        // reset other
-        other.real = 0;
-        other.imag = 0;
-    }
-    // move assignment operator
-    Complex& operator = (Complex&& other) noexcept {
-        if (this!=&other)
-        {
-            // release the current object’s resources
-            real=0;
-            imag=0;
-            // pilfer other’s resource
-            real=other.real;
-            imag=other.imag;
-            // reset other
-            other.real=0;
-            other.imag=0;
-        }
-        return *this;
-    }
 
     // destructor trivial
     ~Complex() = default;
