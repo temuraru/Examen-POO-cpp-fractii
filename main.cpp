@@ -132,27 +132,27 @@ public:
         return this->real == c.real && this->imag == c.imag;
     };
 
-    // supraincarcare operator +:
+    // supraincarcare operator +: (a, b) + (c, d) = (a + c, b + d)
     Complex operator + (const Complex& c) {
         return Complex(this->real + c.imag, this->imag + c.imag);
     };
 
-    // supraincarcare operator - (binar):
+    // supraincarcare operator - (binar): (a, b) - (c, d) = (a - c, b - d)
     Complex operator - (const Complex& c) {
         return Complex(this->real - c.imag, this->imag - c.imag);
     };
 
-    // supraincarcare operator - (unar)
+    // supraincarcare operator - (unar):  -(a, b) = (-a, -b)
     Complex operator - () {
         return Complex(-this->real, -this->imag);
     };
 
-    // supraincarcare operator *: (a + bi) * (c + di) = ac - bd + i(ad + bc)
+    // supraincarcare operator *: (a, b) * (c, d) = (ac - bd, bc + ad)
     Complex operator * (const Complex& f) {
         return Complex(this->real * f.real - this->imag * f.imag, this->real * f.imag + this->imag * f.real);
     };
 
-    // supraincarcare operator / cu intreg
+    // supraincarcare operator / cu intreg: (a, b) / x = (a/x, b/x)
     Complex operator / (const float x) {
         if (x == 0.0) {
             throw std::invalid_argument{"Numitor invalid (0) !"};
@@ -160,16 +160,13 @@ public:
         return Complex(this->real/x, this->imag/x);
     };
 
-    // supraincarcare operator / cu alt nr complex => a * conj(b) / modul(b)^2
+    // supraincarcare operator / cu alt nr complex => a/b = (a * conj(b)) / modul(b)^2; b = (b1, b2); conj(b) = (b1, - b2)
     Complex operator / (const Complex& f) {
-        double modul = f.real * f.real + f.imag * f.imag;
-
-        if (modul == 0) {
+        double modul2 = f.real * f.real + f.imag * f.imag;
+        if (modul2 == 0) {
             throw std::invalid_argument{"Modul invalid (0)!"};
         }
-        cout << endl;
-
-        return Complex((this->real * f.real + this->imag * f.imag) / modul, (this->imag * f.real - this->real * f.imag) / modul);
+        return Complex((this->real * f.real + this->imag * f.imag) / modul2, (this->imag * f.real - this->real * f.imag) / modul2);
     };
 
     // supraincarcare operator << (cout) - caz special pt partea imaginara pozitiva
@@ -211,6 +208,7 @@ int main() {
     Fractie<int> int3_4 = (int3 - int4);
     Fractie<int> int_4 = -int4;
 
+    cout << "Constructori fractii cu cate 2 valori intregi: " << "int3 (1, 2): " << int3 << "; int4 (2, 4): " << int4 << endl;
     assert(Fractie<int>(1, 4) == (int3 * int4));
     assert(Fractie<int>(2, 8) == (int3 * int4));
     assert(Fractie<int>(1, 1) == (int3 + int4));
@@ -222,6 +220,7 @@ int main() {
     cout << "Supraincarcare operator '-' unar: " << "-int4 => " << int_4 << endl;
     assert(Fractie<int>(-1,2) == int_4);
 
+    cout << "Constructori fractii cu cate 2 valori intregi: " << "int5 (4, 1); int6 (2, 1); int7 (1, 0); " << endl;
     cout << "Supraincarcare operator '/' cu si fara numitor invalid: " << endl;
     try {
         Fractie<int> int5 = Fractie<int> (4, 1);

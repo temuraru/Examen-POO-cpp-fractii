@@ -1,7 +1,6 @@
 Sa se definească o clasă generică pentru fracţii cu numărător şi denominator de un tip T neprecizat (parametru),
 în care operatorii =, ==, operatorii aritmetici, +, - (unar si binar), * şi / să fie supraîncărcaţi
 pentru operaţiile obişnuite cu fracţii,
-
 iar operatorul (tip) de conversie a tipurilor să fie supraîncărcat pentru a efectua conversia unui obiect de tipul T  la o fracţie
 care are ca denominator "unitatea" din tipul T (element neutru la *), care poate fi elementul construit de un anume constructor al clasei T,
 având argument de tip int, care să dea sens declaraţiei cu iniţializare T a=1
@@ -10,6 +9,14 @@ având argument de tip int, care să dea sens declaraţiei cu iniţializare T a=
 Se vor da exemple de creare şi utilizare de obiecte pentru diferite tipuri ale numărătorului şi numitorului :
 int, întregi Gauss, adică numere complexe cu părţile reală şi imaginară de tip int
 (după definirea acestora ca o clasă separată), etc.
+
+
+
+ Warnings solved
+ --------
+- explicit: Single argument constructors must be marked explicit to avoid unintentional implicit conversions
+- =default: Use '= default' to define a trivial destructor
+- constructors: Class 'Complex' defines a destructor, a copy constructor, a copy assignment constructor but does not define a move constructor and a move assignment constructor
 
 
  Compiling single file...
@@ -48,10 +55,3 @@ int, întregi Gauss, adică numere complexe cu părţile reală şi imaginară d
  - Output Filename: E:\temur\Desktop\poo-proiect-fractii.exe
  - Output Size: 1,85542297363281 MiB
  - Compilation Time: 0,94s
-
-
- Warnings solved
- --------
-- explicit: Single argument constructors must be marked explicit to avoid unintentional implicit conversions
-- =default: Use '= default' to define a trivial destructor
-- constructors: Class 'Complex' defines a destructor, a copy constructor, a copy assignment constructor but does not define a move constructor and a move assignment constructor
